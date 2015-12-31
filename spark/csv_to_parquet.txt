@@ -2,3 +2,9 @@
 val df = sqlContext.read.format("com.databricks.spark.csv").option("header", "true").load("/data/opt/otp/On_Time_On_Time_Performance_*.csv")
 sqlContext.setConf("spark.sql.parquet.compression.codec", "snappy")
 df.write.partitionBy("Year").parquet("/data/flash/spark/otp")
+
+# read data
+val pFile = sqlContext.read.parquet("/mnt/i3600/spark/otp").cache()
+
+(pFile.groupBy("Year","Month").count()).agg(avg("count")).collect()
+val t1=System.currentTimeMillis; (pFile.filter("DepDel15=1").groupBy("Year","Month").count()).agg(avg("count")).collect(); val t2=System.currentTimeMillis; t2-t1
