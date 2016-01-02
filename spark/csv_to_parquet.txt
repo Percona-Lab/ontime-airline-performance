@@ -1,5 +1,8 @@
 # bin/spark-shell --packages com.databricks:spark-csv_2.11:1.3.0
 val df = sqlContext.read.format("com.databricks.spark.csv").option("header", "true").load("/data/opt/otp/On_Time_On_Time_Performance_*.csv")
+# or
+val df = sqlContext.read.format("com.databricks.spark.csv").option("header", "true").option("inferSchema", "true").load("/data/opt/otp/On_Time_On_Time_Performance_*.csv")
+
 sqlContext.setConf("spark.sql.parquet.compression.codec", "snappy")
 df.write.partitionBy("Year").parquet("/data/flash/spark/otp")
 
