@@ -108,4 +108,4 @@ CREATE TABLE `ontime` (
   `Div5LongestGTime` varchar(10) DEFAULT NULL,
   `Div5WheelsOff` varchar(10) DEFAULT NULL,
   `Div5TailNum` varchar(10) DEFAULT NULL
-) ENGINE=TokuDB DEFAULT CHARSET=latin1 ROW_FORMAT=TOKUDB_QUICKLZ
+) DEFAULT CHARSET=latin1 
